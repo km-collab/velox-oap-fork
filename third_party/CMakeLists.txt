@@ -31,6 +31,7 @@ if(VELOX_ENABLE_ARROW)
       -DARROW_WITH_SNAPPY=ON
       -DARROW_WITH_ZLIB=ON
       -DARROW_WITH_ZSTD=ON
+      -DARROW_WITH_QAT=ON
       -DARROW_JEMALLOC=OFF
       -DARROW_SIMD_LEVEL=NONE
       -DARROW_RUNTIME_SIMD_LEVEL=NONE
@@ -55,12 +56,16 @@ if(VELOX_ENABLE_ARROW)
                                       ${THRIFT_INCLUDE_DIR})
   set_property(TARGET thrift PROPERTY IMPORTED_LOCATION ${THRIFT_LIB})
 
-  set(VELOX_ARROW_BUILD_VERSION 13.0.0)
-  set(VELOX_ARROW_BUILD_SHA256_CHECKSUM
-      35dfda191262a756be934eef8afee8d09762cad25021daa626eb249e251ac9e6)
   set(VELOX_ARROW_SOURCE_URL
-      "https://archive.apache.org/dist/arrow/arrow-${VELOX_ARROW_BUILD_VERSION}/apache-arrow-${VELOX_ARROW_BUILD_VERSION}.tar.gz"
+    "https://github.com/klmckeig/arrow-fork/archive/refs/heads/baseline.zip"
   )
+
+  # set(VELOX_ARROW_BUILD_VERSION 13.0.0)
+  # set(VELOX_ARROW_BUILD_SHA256_CHECKSUM
+  #     35dfda191262a756be934eef8afee8d09762cad25021daa626eb249e251ac9e6)
+  # set(VELOX_ARROW_SOURCE_URL
+  #     "https://archive.apache.org/dist/arrow/arrow-${VELOX_ARROW_BUILD_VERSION}/apache-arrow-${VELOX_ARROW_BUILD_VERSION}.tar.gz"
+  # )
 
   resolve_dependency_url(ARROW)
 
