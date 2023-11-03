@@ -60,7 +60,7 @@ if(VELOX_ENABLE_ARROW)
     "https://github.com/klmckeig/arrow-fork/archive/refs/heads/baseline.zip"
   )
   set(VELOX_ARROW_BUILD_SHA256_CHECKSUM
-  5406872527b507db95e601d6e5ab0dd67908bf0e)
+  2e68d889b50b2ecb9122cd34c1330c7c6af28066d876b538136d760ae73ad630)
 
   # set(VELOX_ARROW_BUILD_VERSION 13.0.0)
   # set(VELOX_ARROW_BUILD_SHA256_CHECKSUM
