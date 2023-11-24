@@ -29,4 +29,5 @@ target_link_libraries(
   Snappy::snappy
   zstd::zstd
   ZLIB::ZLIB
-  lz4::lz4)
+  lz4::lz4
+  qatzstd::qatzstd)
