@@ -12,6 +12,19 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+add_executable(velox_dwio_parquet_writer_benchmark ParquetWriterBenchmark.cpp)
+target_link_libraries(
+  velox_dwio_parquet_writer_benchmark
+  velox_dwio_parquet_reader
+  velox_dwio_parquet_writer
+  velox_dwio_arrow_parquet_writer
+  velox_exec_test_lib
+  velox_exec
+  velox_hive_connector
+  velox_tpch_gen
+  Folly::folly
+  ${FOLLY_BENCHMARK})
+
 add_executable(velox_parquet_writer_sink_test SinkTests.cpp)
 
 add_test(
