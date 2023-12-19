@@ -43,6 +43,7 @@ DEFINE_int32(MAX_ORDER_ROWS, 6000000, "max order rows");
 DEFINE_int32(BASE_SCALE_FACTOR, 1, "scale factor used in tpchgen");
 
 DEFINE_string(Compression, "zstd", "parquet compression");
+DEFINE_int32(Level, 1, "compression level");
 DEFINE_string(SaveDirectory, "/tmp", "parquet save directory");
 
 class ParquetWriterBenchmark {
@@ -53,7 +54,7 @@ class ParquetWriterBenchmark {
     leafPool_ = rootPool_->addLeafChild("ParquetReaderBenchmark");
 
     int id = syscall(SYS_gettid);
-    auto path = FLAGS_SaveDirectory + "/" + FLAGS_Compression + "_compressed_"
+    auto path = FLAGS_SaveDirectory + "/" + FLAGS_Compression + "_compressed_" + std::to_string(FLAGS_Level) + "_level_"
         + std::to_string(id) + ".parquet";
     auto localWriteFile = std::make_unique<LocalWriteFile>(path, true, false);
     auto sink =
@@ -62,7 +63,10 @@ class ParquetWriterBenchmark {
     facebook::velox::parquet::WriterOptions options;
     options.memoryPool = rootPool_.get();
     options.compression = getCompressionType(FLAGS_Compression);
-	options.schema = getTableSchema(Table::TBL_LINEITEM);
+
+    options.codecOptions = std::make_shared<CodecOptions>();
+    options.codecOptions->compression_level = FLAGS_Level;
+	  options.schema = getTableSchema(Table::TBL_LINEITEM);
     if (disableDictionary_) {
       // The parquet file is in plain encoding format.
       options.enableDictionary = false;
