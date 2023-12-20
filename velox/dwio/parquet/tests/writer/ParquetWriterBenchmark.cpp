@@ -63,9 +63,11 @@ class ParquetWriterBenchmark {
     facebook::velox::parquet::WriterOptions options;
     options.memoryPool = rootPool_.get();
     options.compression = getCompressionType(FLAGS_Compression);
-
-    options.codecOptions = std::make_shared<CodecOptions>();
-    options.codecOptions->compression_level = FLAGS_Level;
+    if(CompressionKind_NONE != options.compression)
+    {
+      options.codecOptions = std::make_shared<CodecOptions>();
+      options.codecOptions->compression_level = FLAGS_Level;
+    }
 	  options.schema = getTableSchema(Table::TBL_LINEITEM);
     if (disableDictionary_) {
       // The parquet file is in plain encoding format.
