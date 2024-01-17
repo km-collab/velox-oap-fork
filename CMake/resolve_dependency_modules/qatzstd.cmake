@@ -43,10 +43,10 @@ set(QATZSTD_MAKE_ARGS "ENABLE_USDM_DRV=1" "ZSTDLIB=${ZSTD_INCLUDE_DIR}"
                       "DEBUGLEVEL=0")
 
 set(QATZSTD_SOURCE_URL
-    "https://github.com/intel-collab/applications.qat.shims.zstandard.qatzstdplugin.git"
+    "https://github.com/intel/QAT-ZSTD-Plugin.git"
 )
 set(QATZSTD_SOURCE_BRANCH "main")
-set(QATZSTD_BASE_COMMIT "118cc226e8e8b539a5b349f5876fc21d8e4d1c1a")
+set(QATZSTD_BASE_COMMIT "e5a134e12d2ea8a5b0f3b83c5b1c325fda4eb0a8")
 
 ExternalProject_Add(
   qatzstd
